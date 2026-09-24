@@ -8,7 +8,7 @@ if (!['yes', 'no'].includes(response)) response = null;
 
 function updateWhatsApp() {
   const answer = response === 'yes' ? 'I’ll be delighted to attend.' : response === 'no' ? 'Unfortunately, I can’t make it. Sending my love and blessings!' : 'I’d like to respond to your invitation.';
-  const message = `Thank you for inviting me to the wedding celebrations of Umesh Bir Singh Jain & ${brideName} on 27–28 November 2026. ${answer}`;
+  const message = `Thank you for inviting me to the wedding celebrations of Samayak & ${brideName} on 27–28 November 2026. ${answer}`;
   $('#whatsapp').href = `https://wa.me/${INVITATION_CONFIG.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
 }
 function updateBride() {
@@ -23,17 +23,12 @@ function updateRSVP() {
 }
 document.querySelectorAll('.rsvp-choice').forEach(button => button.addEventListener('click', () => { response = button.dataset.answer; storage.set('wedding-rsvp', response); updateRSVP(); }));
 updateBride(); updateRSVP();
-
-
-
 document.querySelectorAll('.floral').forEach(el => { el.innerHTML = '<svg class="leaves" aria-hidden="true"><use href="#branch"/></svg><svg class="bloom" aria-hidden="true"><use href="#flower"/></svg><svg class="bloom small" aria-hidden="true"><use href="#flower"/></svg><svg class="bloom cream" aria-hidden="true"><use href="#flower"/></svg>'; });
 if ('IntersectionObserver' in window) {
   document.documentElement.classList.add('js-reveal');
   const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }), { threshold: 0.07 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
 }
-
 const lightbox = $('#lightbox');
 document.querySelectorAll('.gallery-item').forEach(button => button.addEventListener('click', () => { const image = button.querySelector('img'); $('#lightbox-image').src = image.src; $('#lightbox-image').alt = image.alt; $('#lightbox-caption').textContent = button.dataset.caption; lightbox.showModal(); }));
 $('#close-gallery').addEventListener('click', () => lightbox.close());
