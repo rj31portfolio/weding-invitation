@@ -13,7 +13,7 @@ function updateWhatsApp() {
 }
 function updateBride() {
   document.querySelectorAll('[data-bride]').forEach(el => { el.textContent = brideName; });
-  document.title = `Umesh & ${brideName} · A Wedding Celebration`;
+  document.title = `Srishti & ${brideName} · A Wedding Celebration`;
   updateWhatsApp();
 }
 function updateRSVP() {
