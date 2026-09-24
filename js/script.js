@@ -40,7 +40,7 @@ $('#bride-form').addEventListener('submit', event => { event.preventDefault(); c
 $('#bride-input').addEventListener('input', event => event.target.setCustomValidity(''));
 
 // Locally bundled original instrumental loop. Playback begins only on a guest's tap.
-const music = new Audio('../assets/music/wedding.mp3');
+const music = new Audio('./assets/music/wedding.mp3');
 music.loop = true; music.preload = 'none'; music.volume = 0.35;
 const musicButton = $('#music-toggle');
 function setMusicState(playing) { musicButton.setAttribute('aria-pressed', String(playing)); musicButton.setAttribute('aria-label', playing ? 'Pause wedding music' : 'Play wedding music'); }
