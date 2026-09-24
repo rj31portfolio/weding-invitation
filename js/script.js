@@ -1,5 +1,5 @@
 /* Customize these two values before publishing. No private details are required. */
-const INVITATION_CONFIG = Object.freeze({ brideName: 'Bride Name', whatsappNumber: '' });
+const INVITATION_CONFIG = Object.freeze({ brideName: 'Samayak', whatsappNumber: '' });
 const $ = (selector) => document.querySelector(selector);
 const storage = { get(key) { try { return localStorage.getItem(key); } catch { return null; } }, set(key, value) { try { localStorage.setItem(key, value); } catch { /* Private browsing: keep this session usable. */ } } };
 let brideName = storage.get('wedding-bride') || INVITATION_CONFIG.brideName;
