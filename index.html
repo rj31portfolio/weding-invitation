@@ -273,5 +273,83 @@
   </dialog>
   <div class="sr-only" id="music-status" role="status"></div>
 </body>
+
+<!-- 🌹 Red Rose Rain Effect -->
+<style>
+  .rose-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+  }
+
+  .rose-petal {
+    position: absolute;
+    top: -50px;
+    color: #e60026;
+    font-size: 25px;
+    animation: roseFall linear forwards;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+  }
+
+  @keyframes roseFall {
+    0% {
+      transform: translateY(-50px) rotate(0deg);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+<div class="rose-rain" id="roseRain"></div>
+
+<script>
+  const roseRain = document.getElementById("roseRain");
+
+  function createRose() {
+    const rose = document.createElement("span");
+
+    rose.className = "rose-petal";
+    rose.innerHTML = "🌹";
+
+    // Random horizontal position
+    rose.style.left = Math.random() * 100 + "vw";
+
+    // Random size
+    rose.style.fontSize = (15 + Math.random() * 10) + "px";
+
+    // Random falling speed
+    rose.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+    // Random rotation
+    rose.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    roseRain.appendChild(rose);
+
+    // Remove after animation
+    setTimeout(() => {
+      rose.remove();
+    }, 10000);
+  }
+
+  // Create rose every 300ms
+  setInterval(createRose, 300);
+</script>
 </html>
 
