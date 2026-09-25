@@ -1,5 +1,5 @@
 /* Customize these two values before publishing. No private details are required. */
-const INVITATION_CONFIG = Object.freeze({ brideName: 'Samayak', whatsappNumber: '' });
+const INVITATION_CONFIG = Object.freeze({ brideName: 'Samyak', whatsappNumber: '' });
 const $ = (selector) => document.querySelector(selector);
 const storage = { get(key) { try { return localStorage.getItem(key); } catch { return null; } }, set(key, value) { try { localStorage.setItem(key, value); } catch { /* Private browsing: keep this session usable. */ } } };
 let brideName = storage.get('wedding-bride') || INVITATION_CONFIG.brideName;
@@ -8,7 +8,7 @@ if (!['yes', 'no'].includes(response)) response = null;
 
 function updateWhatsApp() {
   const answer = response === 'yes' ? 'I’ll be delighted to attend.' : response === 'no' ? 'Unfortunately, I can’t make it. Sending my love and blessings!' : 'I’d like to respond to your invitation.';
-  const message = `Thank you for inviting me to the wedding celebrations of Samayak & ${brideName} on 27–28 November 2026. ${answer}`;
+  const message = `Thank you for inviting me to the wedding celebrations of Samyak & ${brideName} on 27–28 November 2026. ${answer}`;
   $('#whatsapp').href = `https://wa.me/${INVITATION_CONFIG.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
 }
 function updateBride() {
