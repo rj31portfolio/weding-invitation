@@ -177,31 +177,6 @@
         loading="lazy">
     </section>
     
-    <!-- <section class="paper gallery" id="moments" aria-labelledby="gallery-heading">
-      <div class="floral floral-top" aria-hidden="true"></div>
-      <div class="floral floral-bottom" aria-hidden="true"></div>
-      <header class="reveal">
-        <h2 id="gallery-heading"><span>Our</span>Moments</h2>
-        <div class="ornament"><svg>
-            <use href="#lotus" />
-          </svg></div>
-      </header>
-      <div class="gallery-grid reveal"><button class="gallery-item gallery-wide"
-          data-caption="A lifetime of togetherness" aria-label="Enlarge couple inspiration photograph"><img
-            src="assets/images/groom-bride.jpg" alt="Illustrative bride and groom" loading="lazy"></button><button
-          class="gallery-item" data-caption="The golden moments" aria-label="Enlarge haldi inspiration photograph"><img
-            src="assets/images/haldi.jpg" alt="Marigolds and haldi bowl" loading="lazy"></button><button
-          class="gallery-item" data-caption="An evening to remember"
-          aria-label="Enlarge cocktail inspiration photograph"><img src="assets/images/sangeet.jpg"
-            alt="Golden candlelit wedding table" loading="lazy"></button><button class="gallery-item gallery-wide short"
-          data-caption="Where our forever begins" aria-label="Enlarge wedding inspiration photograph"><img
-            src="assets/images/wedding.jpg" alt="Floral palace wedding setting" loading="lazy"></button><button
-          class="gallery-item gallery-wide extra-photo" data-caption="A setting for beautiful memories"
-          aria-label="Enlarge resort inspiration photograph" hidden><img src="assets/images/venue.jpg"
-            alt="Illustrative resort" loading="lazy"></button></div><button class="button primary gallery-more"
-        id="gallery-more" aria-expanded="false"><span>▧</span>View More Photos</button>
-      <p class="gallery-note">Illustrative photographs</p>
-    </section> -->
     <section class="paper venue-rsvp" id="venue" aria-labelledby="venue-heading">
       <div class="floral floral-top" aria-hidden="true"></div>
       <div class="floral floral-bottom" aria-hidden="true"></div>
@@ -273,7 +248,7 @@
   <div class="sr-only" id="music-status" role="status"></div>
 </body>
 
-<!-- 🌹 Red Rose Rain Effect -->
+<!-- 🌹 Rose Rain Effect – uses YOUR image as background -->
 <style>
   .rose-rain {
     position: fixed;
@@ -288,29 +263,28 @@
 
   .rose-petal {
     position: absolute;
-    top: -50px;
-    color: #e60026;
-    font-size: 25px;
+    top: -80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     animation: roseFall linear forwards;
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.25));
+    will-change: transform, opacity;
   }
 
   @keyframes roseFall {
     0% {
-      transform: translateY(-50px) rotate(0deg);
+      transform: translateY(-80px) rotate(0deg) scale(0.9);
       opacity: 0;
     }
-
-    10% {
+    8% {
       opacity: 1;
     }
-
-    90% {
+    92% {
       opacity: 1;
     }
-
     100% {
-      transform: translateY(110vh) rotate(360deg);
+      transform: translateY(110vh) rotate(360deg) scale(1.1);
       opacity: 0;
     }
   }
@@ -322,25 +296,59 @@
 <script>
   // ===================== CONFIG =====================
   // ⚠️ Replace with the real WhatsApp number: country code + number, digits only.
-  // Example for India: 919876543210  (leave empty to open WhatsApp without a recipient)
-  var WHATSAPP_NUMBER = "+918178312252"; // <-- PUT NUMBER HERE, e.g. "919876543210"
+  var WHATSAPP_NUMBER = "+918178312252";
+
+  // ⚠️⚠️ IMPORTANT: Set this to the EXACT path of your flower image ⚠️⚠️
+  // Examples:
+  //   "images/flower.png"
+  //   "assets/images/flower.png"
+  //   "rose.png"
+  var FLOWER_IMAGE = "assets/images/flower.png";
   // ==================================================
 
-  // ===== ROSE RAIN =====
+  // ===== ROSE RAIN (uses your image as CSS background) =====
   (function () {
     var roseRain = document.getElementById("roseRain");
-    function createRose() {
-      var rose = document.createElement("span");
-      rose.className = "rose-petal";
-      rose.innerHTML = "🌹";
-      rose.style.left = Math.random() * 100 + "vw";
-      rose.style.fontSize = (15 + Math.random() * 10) + "px";
-      rose.style.animationDuration = (4 + Math.random() * 5) + "s";
-      rose.style.transform = "rotate(" + (Math.random() * 360) + "deg)";
-      roseRain.appendChild(rose);
-      setTimeout(function () { rose.remove(); }, 10000);
+    if (!roseRain) return;
+
+    function createPetal() {
+      var petal = document.createElement("span");
+      petal.className = "rose-petal";
+
+      // Set the image as background so it always shows
+      petal.style.backgroundImage = "url('" + FLOWER_IMAGE + "')";
+
+      // Random size (20px – 42px)
+      var size = 20 + Math.random() * 22;
+      petal.style.width = size + "px";
+      petal.style.height = size + "px";
+
+      // Random horizontal position
+      petal.style.left = Math.random() * 100 + "vw";
+
+      // Random fall duration (5s – 10s)
+      var duration = 5 + Math.random() * 5;
+      petal.style.animationDuration = duration + "s";
+
+      // Random initial rotation
+      var startRot = Math.random() * 360;
+      petal.style.transform = "rotate(" + startRot + "deg)";
+
+      roseRain.appendChild(petal);
+
+      // Clean up after animation
+      setTimeout(function () {
+        if (petal.parentNode) petal.remove();
+      }, (duration + 1) * 1000);
     }
-    setInterval(createRose, 300);
+
+    // Spawn petals continuously
+    setInterval(createPetal, 300);
+
+    // Start a few immediately
+    for (var i = 0; i < 4; i++) {
+      setTimeout(createPetal, i * 120);
+    }
   })();
 
   // ===== MUSIC AUTOPLAY =====
@@ -369,9 +377,7 @@
         if (musicStatus) musicStatus.textContent = 'Wedding music paused';
       }
 
-      // Try autoplay immediately
       autoplayMusic.play().then(markPlaying).catch(function () {
-        // Blocked – start on first user interaction
         var unlock = function () {
           autoplayMusic.play().then(function () {
             markPlaying();
@@ -385,7 +391,6 @@
         document.addEventListener('keydown', unlock);
       });
 
-      // Music toggle button (capture phase so it wins over script.js)
       musicBtn.addEventListener('click', function (e) {
         e.stopImmediatePropagation();
         e.preventDefault();
@@ -404,7 +409,6 @@
 
   // ===== RSVP + WHATSAPP REDIRECT =====
   document.addEventListener('DOMContentLoaded', function () {
-    // Small delay to ensure script.js has run first
     setTimeout(function () {
       var rsvpButtons = document.querySelectorAll('.rsvp-choice');
       var statusEl = document.getElementById('rsvp-status');
@@ -428,7 +432,6 @@
       }
 
       rsvpButtons.forEach(function (btn) {
-        // Avoid double-binding if script.js already did
         if (btn.dataset.rsvpBound === '1') return;
         btn.dataset.rsvpBound = '1';
 
@@ -436,31 +439,25 @@
           e.preventDefault();
           var answer = btn.dataset.answer;
 
-          // Save choice
           try { localStorage.setItem('wedding-rsvp', answer); } catch (err) {}
 
-          // Update button states
           rsvpButtons.forEach(function (b) {
             b.setAttribute('aria-pressed', String(b.dataset.answer === answer));
           });
 
-          // Update status text
           if (statusEl) {
             statusEl.textContent = answer === 'yes'
               ? 'Wonderful! Sending you to WhatsApp…'
               : 'You’ll be missed. Sending you to WhatsApp…';
           }
 
-          // Update the visible WhatsApp link href
           var url = buildWhatsAppUrl(answer);
           if (waLink) waLink.href = url;
 
-          // 🔥 REDIRECT to WhatsApp immediately
           window.open(url, '_blank');
         });
       });
 
-      // Also keep the WhatsApp link clickable independently
       if (waLink) {
         waLink.addEventListener('click', function () {
           var answer = 'yes';
