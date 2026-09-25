@@ -249,27 +249,27 @@ h1 {
 .bride-name {
     display      : block;
     font-family  : var(--script);
-    font-size    : 74px;
+    font-size    : 50px;
     overflow-wrap: anywhere
 }
 
 .groom-family {
     font-family: var(--serif);
-    font-size  : 31px;
+    font-size  : 20px;
     display    : block;
-    margin-top : 5px
+    margin-top : 2px
 }
 
 .ampersand {
     display    : block;
     font-family: var(--script);
-    font-size  : 50px;
+    font-size  : 30px;
     line-height: 1.08;
-    margin     : 9px auto
+    margin     : 5px auto
 }
 
 .bride-name {
-    font-size: 67px
+    font-size: 50px
 }
 
 .hero-request {
