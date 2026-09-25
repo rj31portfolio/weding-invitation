@@ -421,8 +421,9 @@ h1 {
 
 .event-details {
     background-image: url('../assets/images/paper.svg');
-    padding-top     : 62px;
-    min-height      : 875px
+    padding         : 72px 28px 275px;
+    min-height      : 875px;
+    background-color: #ead8b8
 }
 
 .event-details header {
@@ -430,48 +431,57 @@ h1 {
 }
 
 .detail-stack {
-    display: grid;
-    gap    : 16px;
-    z-index: 2
+    display             : grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap                 : 10px;
+    z-index              : 2;
+    margin-top           : 28px
 }
 
 .detail-card {
-    display      : flex;
-    align-items  : center;
-    gap          : 20px;
-    text-align   : left;
-    background   : #fff9efa8;
-    border       : 1px solid #fff8ed;
-    border-radius: 13px;
-    padding      : 18px 19px;
-    min-height   : 111px;
-    box-shadow   : 0 5px 7px #7c501c24
+    display        : flex;
+    flex-direction : column;
+    align-items    : flex-start;
+    gap            : 11px;
+    text-align     : left;
+    background     : #fff8ec;
+    border         : 1px solid #dfc59b;
+    border-radius  : 2px;
+    padding        : 18px 13px;
+    min-height     : 158px;
+    box-shadow     : 4px 5px 0 #a6794926;
+    transform      : rotate(-1.5deg)
 }
+
+.detail-card:nth-child(2) { transform: translateY(13px) rotate(1.5deg) }
+.detail-card:nth-child(3) { transform: rotate(-.5deg) }
 
 .detail-icon {
     display        : flex;
     align-items    : center;
     justify-content: center;
     flex-shrink    : 0;
-    height         : 43px;
-    width          : 43px;
-    font-size      : 35px;
-    color          : #ac793f
+    height         : 38px;
+    width          : 38px;
+    font-size      : 28px;
+    color          : #fff8ec;
+    background     : var(--maroon);
+    border-radius  : 50%
 }
 
 .detail-icon svg {
-    height      : 39px;
-    width       : 39px;
+    height      : 23px;
+    width       : 23px;
     stroke-width: 1.8
 }
 
 .detail-card h3 {
-    font         : 500 21px/1.3 var(--sans);
+    font         : 500 16px/1.3 var(--sans);
     margin-bottom: 4px
 }
 
 .detail-card p {
-    font-size  : 12px;
+    font-size  : 10px;
     line-height: 1.7
 }
 
@@ -507,7 +517,9 @@ h1 {
 }
 
 .detail-stack>.button {
-    margin-top: 2px
+    grid-column: 1 / -1;
+    margin     : 25px auto 0;
+    width      : min(100%, 245px)
 }
 
 .details-palace {
@@ -515,7 +527,7 @@ h1 {
     bottom         : 0;
     left           : 0;
     width          : 100%;
-    height         : 275px;
+    height         : 310px;
     object-fit     : cover;
     object-position: center 65%;
     z-index        : 0 !important;
@@ -523,39 +535,41 @@ h1 {
 }
 
 .journey {
-    padding-top: 60px;
-    min-height : 830px
+    padding         : 68px 24px 60px;
+    min-height      : 830px;
+    background-color: #f7eddd
 }
 
 .timeline {
     position  : relative;
-    margin-top: 34px;
-    padding   : 0 1px
+    margin-top: 42px;
+    padding   : 0 1px 8px
 }
 
 .timeline:before {
     content   : '';
     position  : absolute;
-    left      : 49px;
+    left      : 50%;
     top       : -5px;
-    bottom    : 70px;
-    width     : 1px;
-    background: #af824a
+    bottom    : 73px;
+    width     : 2px;
+    background: #b58a58
 }
 
 .journey-row {
     position       : relative;
     display        : flex;
-    align-items    : flex-start;
+    align-items    : center;
     justify-content: space-between;
-    min-height     : 163px
+    min-height     : 174px;
+    padding        : 12px 0
 }
 
 .journey-copy {
-    width      : 160px;
+    width      : 158px;
     text-align : left;
     z-index    : 1;
-    padding-top: 16px
+    padding-top: 0
 }
 
 .journey-icon {
@@ -570,7 +584,9 @@ h1 {
     color          : #fff5e5;
     box-shadow     : 0 4px 6px #62442020;
     font-size      : 28px;
-    margin-left    : 25px
+    margin-left    : 24px;
+    position       : relative;
+    z-index        : 2
 }
 
 .journey-icon svg {
@@ -581,7 +597,7 @@ h1 {
 .journey-copy h3 {
     font       : 500 15px/1.4 var(--sans);
     margin-top : 11px;
-    white-space: nowrap
+    white-space: normal
 }
 
 .journey-copy p {
@@ -591,19 +607,19 @@ h1 {
 }
 
 .journey-row>img {
-    width        : 112px;
-    height       : 112px;
+    width        : 126px;
+    height       : 126px;
     flex-shrink  : 0;
-    border-radius: 50%;
+    border-radius: 8px 44px 8px 44px;
     object-fit   : cover;
-    border       : 2px solid #c8aa75;
+    border       : 5px solid #fff8e9;
     box-shadow   : 0 4px 7px #73552325;
     z-index      : 1
 }
 
 .connector {
     position  : absolute;
-    top       : 40px;
+    top       : 50%;
     left      : 71px;
     right     : 86px;
     height    : 1px;
@@ -693,8 +709,9 @@ h1 {
 }
 
 .venue-rsvp {
-    min-height: 915px;
-    padding   : 64px 28px 66px
+    min-height      : 915px;
+    padding         : 70px 25px 66px;
+    background-color: #e7d5b6
 }
 
 .venue-rsvp .ornament {
@@ -702,18 +719,19 @@ h1 {
 }
 
 .venue-card {
-    border       : 1px solid #e7d7b9;
-    border-radius: 13px;
-    background   : #fff7e9a3;
-    box-shadow   : 0 4px 8px #73542c15;
-    margin-bottom: 53px
+    border       : 1px solid #d0af7c;
+    border-radius: 2px;
+    background   : #fff8eb;
+    box-shadow   : 8px 8px 0 #79532e21;
+    margin       : 33px 5px 48px;
+    transform    : rotate(1deg)
 }
 
 .venue-info {
     display    : flex;
     gap        : 18px;
     align-items: center;
-    padding    : 22px 21px;
+    padding    : 25px 21px 21px;
     text-align : left
 }
 
@@ -735,7 +753,7 @@ h1 {
 }
 
 .venue-info h3 {
-    font: 500 21px/1.3 var(--sans)
+    font: 500 22px/1.15 var(--serif)
 }
 
 .venue-info p {
@@ -745,7 +763,7 @@ h1 {
 
 .venue-image-wrap {
     position     : relative;
-    height       : 177px;
+    height       : 205px;
     overflow     : hidden;
     border-radius: 0 0 12px 12px
 }
